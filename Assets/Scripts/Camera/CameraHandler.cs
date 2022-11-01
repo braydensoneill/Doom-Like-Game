@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BJM
 {
-    public class CameraManager : MonoBehaviour
+    public class CameraHandler : MonoBehaviour
     {
         [Header("General")]
         public Transform targetTransform;
@@ -14,7 +14,7 @@ namespace BJM
         private Vector3 cameraTransformPosition;
         private LayerMask ignoreLayers;
 
-        public static CameraManager singleton;
+        public static CameraHandler singleton;
 
         public float lookSpeed = 0.1f;
         public float followSpeed = 0.1f;

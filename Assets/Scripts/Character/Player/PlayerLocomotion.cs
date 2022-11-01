@@ -17,7 +17,7 @@ namespace BJM
         public GameObject normalCamera;
 
         [Header("Stats")]
-        [SerializeField] float movementSpeed = 5;
+        [SerializeField] float movementSpeed = 6.5f;
         [SerializeField] float rotationSpeed = 10;
 
         private void Start()
@@ -39,6 +39,7 @@ namespace BJM
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
             moveDirection.Normalize();
+            moveDirection.y = 0;
 
             float speed = movementSpeed;
             moveDirection *= speed;

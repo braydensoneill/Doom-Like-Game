@@ -10,6 +10,7 @@ namespace BJM
         public Transform targetTransform;
         public Transform cameraTransform;
         public Transform cameraPivotTransform;
+
         private Transform myTransform;
         private Vector3 cameraTransformPosition;
         private LayerMask ignoreLayers;
@@ -17,6 +18,7 @@ namespace BJM
 
         public static CameraHandler singleton;
 
+        [Header("Camera Movement")]
         public float lookSpeed = 0.015f;
         public float followSpeed = 0.1f;
         public float pivotSpeed = 0.01f;
@@ -25,9 +27,12 @@ namespace BJM
         private float defaultPosition;
         private float lookAngle;
         private float pivotAngle;
+
+        [Header("Camera Pivot")]
         public float minimumPivot = -35;
         public float maximumPivot = 35;
 
+        [Header("Camera Collisions")]
         public float cameraSphereRadius = 0.2f;
         public float cameraCollisionOffset = 0.2f;
         public float minimumCollisionOffset = 0.2f;

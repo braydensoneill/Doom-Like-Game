@@ -6,15 +6,15 @@ namespace BJM
 {
     public class PlayerLocomotion : MonoBehaviour
     {
+        [Header("General")]
+        public new Rigidbody rigidbody;
+        //public GameObject normalCamera;
         private Transform cameraObject;
         private InputHandler inputHandler;
         private Vector3 moveDirection;
 
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public PlayerAnimatorHandler playerAnimatorHandler;
-
-        public new Rigidbody rigidbody;
-        public GameObject normalCamera;
 
         [Header("Stats")]
         [SerializeField] float movementSpeed = 6.5f;

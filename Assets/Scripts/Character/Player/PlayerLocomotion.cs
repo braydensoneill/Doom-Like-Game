@@ -20,6 +20,10 @@ namespace BJM
         [SerializeField] float movementSpeed = 6.5f;
         [SerializeField] float rotationSpeed = 10;
 
+        // Movement variables
+        private Vector3 normalVector;
+        private Vector3 targetPosition;
+
         private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
@@ -36,29 +40,10 @@ namespace BJM
 
             inputHandler.TickInput(delta);
 
-            moveDirection = cameraObject.forward * inputHandler.vertical;
-            moveDirection += cameraObject.right * inputHandler.horizontal;
-            moveDirection.Normalize();
-            moveDirection.y = 0;
-
-            float speed = movementSpeed;
-            moveDirection *= speed;
-
-            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-            rigidbody.velocity = projectedVelocity;
-
-            playerAnimatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
-
-            if(playerAnimatorHandler.canRotate)
-            {
-                HandleRotation(delta);
-            }
+            HandleMovement(delta);
         }
 
         #region Movement
-        Vector3 normalVector;
-        Vector3 targetPosition;
-
         private void HandleRotation(float _delta)
         {
             Vector3 targetDir = Vector3.zero;
@@ -79,6 +64,27 @@ namespace BJM
             Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * _delta);
 
             myTransform.rotation = targetRotation;
+        }
+
+        private void HandleMovement(float _delta)
+        {
+            moveDirection = cameraObject.forward * inputHandler.vertical;
+            moveDirection += cameraObject.right * inputHandler.horizontal;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+
+            float speed = movementSpeed;
+            moveDirection *= speed;
+
+            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
+            rigidbody.velocity = projectedVelocity;
+
+            playerAnimatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0);
+
+            if (playerAnimatorHandler.canRotate)
+            {
+                HandleRotation(_delta);
+            }
         }
         #endregion
     }

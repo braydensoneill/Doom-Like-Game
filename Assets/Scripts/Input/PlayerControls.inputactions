@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControlls",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Player Movement",
@@ -103,6 +103,12 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Player Actions",
+            "id": "dbe27cca-bd3e-4242-ac5f-037abe21cad0",
+            "actions": [],
+            "bindings": []
         }
     ],
     "controlSchemes": []

@@ -6,7 +6,6 @@ namespace BJM
 {
     public class CharacterManager : MonoBehaviour
     {
-       
-    }
 
+    }
 }

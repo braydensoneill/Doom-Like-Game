@@ -14,6 +14,7 @@ namespace BJM
         public float moveAmount;
         public float mouseX;
         public float mouseY;
+        public float input_crouch;
         private Vector2 movementInput;
         private Vector2 cameraInput;
 

@@ -7,7 +7,6 @@ namespace BJM
     public class InputHandler : MonoBehaviour
     {
         private PlayerControls inputActions;
-        private CameraHandler cameraManager;
 
         [Header("Inputs")]
         public float horizontal;
@@ -15,28 +14,8 @@ namespace BJM
         public float moveAmount;
         public float mouseX;
         public float mouseY;
-
-        [Header("Flags")]
-        public bool isInteracting;
-
         private Vector2 movementInput;
         private Vector2 cameraInput;
-
-        private void Awake()
-        {
-            cameraManager = FindObjectOfType<CameraHandler>();
-        }
-
-        private void FixedUpdate()
-        {
-            float delta = Time.fixedDeltaTime;
-
-            if (cameraManager != null)
-            {
-                cameraManager.FollowTarget(delta);
-                cameraManager.HandleCameraRotation(delta, mouseX, mouseY);
-            }
-        }
 
         public void OnEnable()
         {
@@ -44,9 +23,10 @@ namespace BJM
             {
                 inputActions = new PlayerControls();
 
-                // All keybinds go here
+                #region Handle Keybinds
                 inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                #endregion 
             }
 
             inputActions.Enable();

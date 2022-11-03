@@ -8,15 +8,17 @@ namespace BJM
     {
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
+        private PlayerManager playerManager;
 
         int vertical;
         int horizontal;
         public bool canRotate;
 
-        public void Initialise()
+        private void Awake()
         {
             animator = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
+            playerManager = GetComponentInParent<PlayerManager>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");
@@ -79,7 +81,7 @@ namespace BJM
         // Re-adjust the player's model to the center of the game object after performing an animation
         private void OnAnimatorMove()
         {
-            if (inputHandler.isInteracting == false)
+            if (playerManager.isInteracting == false)
                 return;
 
             float delta = Time.deltaTime;

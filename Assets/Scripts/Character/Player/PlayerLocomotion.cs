@@ -16,31 +16,21 @@ namespace BJM
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public PlayerAnimatorHandler playerAnimatorHandler;
 
-        [Header("Stats")]
+        [Header("Movement Stats")]
         [SerializeField] float movementSpeed = 6.5f;
-        [SerializeField] float rotationSpeed = 10;
+        [SerializeField] float rotationSpeed = 20;
 
         // Movement variables
         private Vector3 normalVector;
         private Vector3 targetPosition;
 
-        private void Start()
+        private void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             cameraObject = Camera.main.transform;
             myTransform = transform;
-            playerAnimatorHandler.Initialise();
-        }
-
-        public void Update()
-        {
-            float delta = Time.deltaTime;
-
-            inputHandler.TickInput(delta);
-
-            HandleMovement(delta);
         }
 
         #region Movement
@@ -66,7 +56,7 @@ namespace BJM
             myTransform.rotation = targetRotation;
         }
 
-        private void HandleMovement(float _delta)
+        public void HandleMovement(float _delta)
         {
             moveDirection = cameraObject.forward * inputHandler.vertical;
             moveDirection += cameraObject.right * inputHandler.horizontal;
